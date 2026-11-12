@@ -7,6 +7,7 @@ export const translations = {
     tabLink: "Check Link",
     tabQr: "Scan QR",
     tabTxn: "Check Transaction",
+    tabMessage: "Check Message",
     tabHistory: "History & Insights",
     tabTips: "Scam Tips",
     
@@ -104,6 +105,7 @@ export const translations = {
     tabLink: "लिंक जांचें",
     tabQr: "QR स्कैन करें",
     tabTxn: "ट्रांजेक्शन जांचें",
+    tabMessage: "मैसेज जांचें",
     tabHistory: "इतिहास और विवरण",
     tabTips: "धोखाधड़ी से बचाव",
     

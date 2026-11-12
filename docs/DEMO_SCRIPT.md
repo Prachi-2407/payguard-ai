@@ -69,13 +69,45 @@
 
 ---
 
-## ⏱️ Minute 2:30 – 3:00: History Audit Log, Analytics & Multilingual UX
+## ⏱️ Minute 2:30 – 3:15: SMS/WhatsApp Message Analysis & Community Reporting
+
+1. **Presenter Narration**:
+   > *"Most payment fraud doesn't start with a raw link or QR code—it starts with an SMS or WhatsApp message. PayGuard AI's Intelligence Layer analyzes text messages, extracts embedded entities, and checks our crowd-sourced community reputation database."*
+
+2. **Action**:
+   - Switch to the **Check Message** tab.
+   - Click the sample: **KYC Phishing SMS**
+     `"Dear user your SBI KYC expires today. Update at http://sbi-kyc-update.top/login or account will be blocked"`
+   - Click **Analyze Message Threat**.
+
+3. **What Appears**:
+   - Instant High Risk result:
+     - **Extracted Entities**: Scam Category (`KYC_FRAUD`), embedded URL (`http://sbi-kyc-update.top/login`).
+     - **Signals**: False urgency urgency cues (`today`, `blocked`), bank impersonation (`SBI`), deceptive domain heuristic fallback.
+   - Click **Report Threat**:
+     - The **Report a New Fraud Vector** modal opens with the detected threat pre-filled.
+     - Submit the report and watch the crowd-sourced community threat count increment.
+
+---
+
+## ⏱️ Minute 3:15 – 3:45: Browser Extension & Voice Call Threat Defense
+
+1. **Action & Narration**:
+   - Show the Chrome Browser Extension (`/extension`):
+     - Displays real-time badge on payment links in web mail or messaging apps.
+     - Right-click context menu: **Check with PayGuard AI** evaluates links against port 8001 or 8000 with sub-second response.
+   - Show the Voice Call Scam Detector (`POST /api/ext/analyze/voice`):
+     - Detects "Digital Arrest" impersonation (CBI / Police intimidation) and remote desktop fraud (AnyDesk / TeamViewer theft).
+
+---
+
+## ⏱️ Minute 3:45 – 4:15: History Audit Log, Analytics & Multilingual UX
 
 1. **Action**:
    - Switch to the **History & Insights** tab:
      - Observe the **Risk Level Distribution** bar chart (Clean vs Suspicious vs Dangerous).
      - View the **Timeline Threat Trend** line showing recent test scans.
-     - Filter by type (`QR Codes`) or risk level (`HIGH`).
+     - Filter by type (`QR Codes`, `Messages`) or risk level (`HIGH`).
      - Click **View Details** on any past record to open the complete inspection drawer.
    - In the top header:
      - Toggle language to **हिन्दी (Hindi)**: Notice all verdicts, buttons, tabs, and alerts seamlessly render in Hindi for regional accessibility.

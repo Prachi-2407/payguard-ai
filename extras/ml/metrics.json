@@ -1,0 +1,94 @@
+{
+  "dataset_type": "Synthetic (Context-balanced English, Hindi, Hinglish with hard negatives)",
+  "random_seed": 42,
+  "n_samples": 3780,
+  "n_train": 3024,
+  "n_test": 756,
+  "accuracy": 1.0,
+  "precision_macro": 1.0,
+  "recall_macro": 1.0,
+  "f1_macro": 1.0,
+  "precision_weighted": 1.0,
+  "recall_weighted": 1.0,
+  "f1_weighted": 1.0,
+  "classes": [
+    "COLLECT_REQUEST",
+    "FAKE_CUSTOMER_CARE",
+    "JOB_SCAM",
+    "KYC_FRAUD",
+    "LOAN_SCAM",
+    "LOTTERY",
+    "NONE",
+    "OTHER",
+    "REFUND_SCAM"
+  ],
+  "classification_report": {
+    "COLLECT_REQUEST": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "FAKE_CUSTOMER_CARE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "JOB_SCAM": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "KYC_FRAUD": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "LOAN_SCAM": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "LOTTERY": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "NONE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "OTHER": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "REFUND_SCAM": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 84.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 756.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 756.0
+    }
+  }
+}

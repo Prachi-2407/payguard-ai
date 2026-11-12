@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PayGuard AI Inspector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <div class="logo-shield">🛡️</div>
+      <div>
+        <div class="title">PayGuard AI</div>
+        <div class="subtitle">Fraud & Phishing Shield</div>
+      </div>
+    </div>
+    <a href="#" id="options-btn" class="settings-link" title="Settings">⚙️</a>
+  </div>
+
+  <div class="container">
+    <div class="input-section">
+      <label for="url-input" class="label">Inspect Link / URL</label>
+      <div class="input-row">
+        <input type="text" id="url-input" placeholder="e.g. http://sbi-kyc-update.top/login" spellcheck="false" />
+        <button id="check-btn" class="btn primary">Check</button>
+      </div>
+    </div>
+
+    <div id="loading" class="loading-state hidden">
+      <div class="spinner"></div>
+      <p>Analyzing link across multi-vector threat engine...</p>
+    </div>
+
+    <div id="result-card" class="result-card hidden">
+      <div class="result-header">
+        <div class="risk-gauge">
+          <div id="gauge-score" class="gauge-score">0</div>
+          <div class="gauge-denom">/ 100</div>
+        </div>
+        <div class="verdict-col">
+          <div id="risk-badge" class="badge">SAFE</div>
+          <div id="verdict-text" class="verdict-text">Safe to proceed</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-title">Detected Signals</div>
+      <div id="signals-list" class="signals-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="action-box">
+        <div class="action-title">💡 Recommended Action</div>
+        <div id="action-text" class="action-text">No action required.</div>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+      <p>Paste a payment link, QR deep-link, or website URL above to verify before proceeding.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>PayGuard AI v1.0.0</span> • <a href="http://localhost:5173" target="_blank" class="footer-link">Open Dashboard</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

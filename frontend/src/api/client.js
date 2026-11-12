@@ -1,11 +1,43 @@
 // src/api/client.js
-import { USE_MOCK, API_BASE_URL } from '../config';
+import { USE_MOCK, API_BASE_URL, EXTRAS_API_URL } from '../config';
 import * as mockApi from './mockApi';
 
-// Sanitize base URL: strip trailing slashes and redundant trailing '/api'
-const cleanBaseUrl = (API_BASE_URL || 'https://payguard-ai-izry.onrender.com')
+// Sanitize base URLs
+const cleanBaseUrl = (API_BASE_URL || 'http://localhost:8000')
   .replace(/\/+$/, '')
   .replace(/\/api$/, '');
+
+const cleanExtrasUrl = (EXTRAS_API_URL || 'http://localhost:8001')
+  .replace(/\/+$/, '')
+  .replace(/\/api$/, '');
+
+async function fetchExtrasApi(endpoint, options = {}) {
+  const url = `${cleanExtrasUrl}${endpoint}`;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      ...options,
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const err = new Error(data.error || `Request failed with status ${res.status}`);
+      err.status = res.status;
+      err.data = data;
+      throw err;
+    }
+    return data;
+  } catch (error) {
+    if (error.status) throw error;
+    const netErr = new Error("Unable to connect to PayGuard Extras service. Please ensure extras service is running on port 8001.");
+    netErr.status = 503;
+    netErr.data = { error: "Extras server unreachable at " + cleanExtrasUrl, code: 503 };
+    throw netErr;
+  }
+}
 
 async function fetchRealApi(endpoint, options = {}) {
   const url = `${cleanBaseUrl}${endpoint}`;
@@ -83,5 +115,33 @@ export async function getHealth() {
     return mockApi.mockGetHealth();
   }
   return fetchRealApi('/api/health');
+}
+
+export async function analyzeMessage(payload) {
+  if (USE_MOCK) {
+    return mockApi.mockAnalyzeMessage(payload);
+  }
+  return fetchExtrasApi('/api/ext/analyze/message', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function submitReport(payload) {
+  if (USE_MOCK) {
+    return mockApi.mockSubmitReport(payload);
+  }
+  return fetchExtrasApi('/api/ext/reports', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function getReputation(value) {
+  if (USE_MOCK) {
+    return mockApi.mockGetReputation(value);
+  }
+  const params = new URLSearchParams({ value });
+  return fetchExtrasApi(`/api/ext/reputation?${params.toString()}`);
 }
 

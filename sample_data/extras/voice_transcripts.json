@@ -1,0 +1,108 @@
+[
+  {
+    "id": "scam_voice_01",
+    "transcript": "Hello, I am calling from State Bank of India main branch. Your debit card and NetBanking services are expiring today. Please share your account number and the 6-digit OTP sent to your phone to renew.",
+    "language": "en",
+    "expected_category": "BANK_IMPERSONATION",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_02",
+    "transcript": "Namaste, main HDFC Bank head office se senior manager bol raha hoon. Aapke account mein unauthorized international transaction attempt hua hai. Turant card details aur PIN verify kijiye.",
+    "language": "hi",
+    "expected_category": "BANK_IMPERSONATION",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_03",
+    "transcript": "You are placed under Digital Arrest by Supreme Court orders. You cannot disconnect this call or switch off your camera. Do not inform family or anyone. Transfer 50,000 rupees to RBI escrow account for verification.",
+    "language": "en",
+    "expected_category": "DIGITAL_ARREST",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_04",
+    "transcript": "Aap is waqt Digital Arrest mein hain. Jab tak inquiry complete nahi hoti aap room se bahar nahi jayenge aur phone disconnect nahi karenge. Official clearance account mein security deposit transfer karein.",
+    "language": "hi",
+    "expected_category": "DIGITAL_ARREST",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_05",
+    "transcript": "I am Officer Vikram Sharma from Delhi Crime Branch. A courier parcel registered under your Aadhaar containing illegal narcotics and fake passports was seized at Mumbai airport. You must pay legal bond now.",
+    "language": "en",
+    "expected_category": "POLICE_OR_GOVERNMENT_IMPERSONATION",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_06",
+    "transcript": "Sir, I have triggered a security token to your mobile number. Please read out the 6-digit OTP so I can cancel the unauthorized debit on your card. Quickly, it expires in 30 seconds.",
+    "language": "en",
+    "expected_category": "OTP_FRAUD",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_07",
+    "transcript": "Madam, aapke phone par ek One Time Password aaya hoga. Jaldi se OTP bata dijiye warna account se 50,000 rupaye kat jayenge.",
+    "language": "hi",
+    "expected_category": "OTP_FRAUD",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_08",
+    "transcript": "Apne phone mein AnyDesk app install kijiye aur jo 9 digit ka code screen par dikh raha hai wo mujhe batayein taaki main failed payment error theek kar sakoon.",
+    "language": "hi",
+    "expected_category": "REMOTE_ACCESS_SCAM",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_09",
+    "transcript": "Hello sir, you raised a complaint regarding failed Google Pay payment of Rs 5,000. I am calling from Google Pay technical team to assist in instant refund. Open app and enter PIN.",
+    "language": "en",
+    "expected_category": "FAKE_CUSTOMER_CARE",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "scam_voice_10",
+    "transcript": "Congratulations sir, your pre-approved loan of 5 Lakh rupees is sanctioned at 2 percent interest rate. You only have to pay a file processing fee of 2,500 rupees via UPI to disburse.",
+    "language": "en",
+    "expected_category": "LOAN_SCAM",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "id": "safe_voice_01",
+    "transcript": "Hello sir, I am your Amazon delivery agent Manoj. I am standing outside your apartment gate. Please come down to collect your package.",
+    "language": "en",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "id": "safe_voice_02",
+    "transcript": "Good afternoon Mr. Sharma, this is HDFC Bank relationship manager calling to check if you are satisfied with your credit card rewards. No personal details needed.",
+    "language": "en",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "id": "safe_voice_03",
+    "transcript": "Bhaiya Zomato se delivery boy bol raha hoon. Aapka address nahi mil raha hai, landmark bata denge please?",
+    "language": "hi",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "id": "safe_voice_04",
+    "transcript": "Hey Rohan, are we meeting at the cafe in Connaught Place this evening? Let me know once you leave office.",
+    "language": "en",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "id": "safe_voice_05",
+    "transcript": "Hi, calling from Airtel broadband service. Your technician visit for fiber installation is confirmed for tomorrow morning 11 AM.",
+    "language": "en",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW"
+  }
+]
+

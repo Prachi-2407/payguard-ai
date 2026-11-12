@@ -1,0 +1,75 @@
+[
+  {
+    "target_type": "vpa",
+    "value": "fraud@ybl",
+    "reason": "Asked me to pay a processing fee for non-existent lottery winnings",
+    "report_count": 5
+  },
+  {
+    "target_type": "vpa",
+    "value": "refund.dept@paytm",
+    "reason": "Sent fake collect request claiming electricity bill refund",
+    "report_count": 4
+  },
+  {
+    "target_type": "vpa",
+    "value": "prize.winner@okaxis",
+    "reason": "Impersonated Tata Motors lucky draw contest manager",
+    "report_count": 3
+  },
+  {
+    "target_type": "vpa",
+    "value": "cashback.offer@ibl",
+    "reason": "Claimed PhonePe cashback but was a debit request",
+    "report_count": 2
+  },
+  {
+    "target_type": "url",
+    "value": "http://sbi-kyc-update.top/login",
+    "reason": "Phishing portal harvesting NetBanking credentials and OTP",
+    "report_count": 8
+  },
+  {
+    "target_type": "url",
+    "value": "http://hdfc-pan-update.xyz",
+    "reason": "Fake HDFC portal asking for debit card ATM PIN and PAN",
+    "report_count": 6
+  },
+  {
+    "target_type": "url",
+    "value": "http://wb-bill-refund.site",
+    "reason": "Phishing site asking for UPI PIN to receive electricity refund",
+    "report_count": 4
+  },
+  {
+    "target_type": "url",
+    "value": "http://instant-cash-loan.xyz",
+    "reason": "Spreads malicious loan APK that extracts phone contacts",
+    "report_count": 3
+  },
+  {
+    "target_type": "phone",
+    "value": "+919876543210",
+    "reason": "Caller impersonated Delhi Police demanding money to avoid digital arrest",
+    "report_count": 9
+  },
+  {
+    "target_type": "phone",
+    "value": "+918765432109",
+    "reason": "Fake customer care number for Google Pay refund fraud",
+    "report_count": 5
+  },
+  {
+    "target_type": "phone",
+    "value": "+919988776655",
+    "reason": "Scammer instructed victim to install AnyDesk remote access app",
+    "report_count": 4
+  },
+  {
+    "target_type": "phone",
+    "value": "+917890123456",
+    "reason": "Posed as SBI relationship officer asking for card CVV",
+    "report_count": 2
+  }
+]
+

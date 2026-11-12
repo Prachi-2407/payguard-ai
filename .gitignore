@@ -41,6 +41,7 @@ payguard.db
 # Environment variables & local secrets
 .env
 .env.local
+extras/.env
 
 # OS / Editor files
 .DS_Store
