@@ -3,11 +3,11 @@ import { USE_MOCK, API_BASE_URL, EXTRAS_API_URL } from '../config';
 import * as mockApi from './mockApi';
 
 // Sanitize base URLs
-const cleanBaseUrl = (API_BASE_URL || 'http://localhost:8000')
+const cleanBaseUrl = (API_BASE_URL || 'https://payguard-ai-izry.onrender.com')
   .replace(/\/+$/, '')
   .replace(/\/api$/, '');
 
-const cleanExtrasUrl = (EXTRAS_API_URL || 'http://localhost:8001')
+const cleanExtrasUrl = (EXTRAS_API_URL || cleanBaseUrl)
   .replace(/\/+$/, '')
   .replace(/\/api$/, '');
 

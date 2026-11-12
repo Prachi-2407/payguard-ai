@@ -11,7 +11,10 @@ class Settings(BaseModel):
     PORT: int = int(os.getenv("PORT", "8001"))
 
     # Service & Integration URLs
-    MAIN_API_URL: str = os.getenv("MAIN_API_URL", "http://localhost:8000")
+    MAIN_API_URL: str = os.getenv(
+        "MAIN_API_URL",
+        "https://payguard-ai-izry.onrender.com" if os.getenv("RENDER") else "http://localhost:8000"
+    )
     MAIN_API_TIMEOUT_SECONDS: float = float(os.getenv("MAIN_API_TIMEOUT_SECONDS", "2.0"))
 
     # Database

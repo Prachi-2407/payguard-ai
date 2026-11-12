@@ -34,6 +34,11 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # Preload ML models once at startup
     get_url_model()
     get_txn_model()
+    try:
+        from extras.app.database.seed import seed_community_reports
+        seed_community_reports()
+    except Exception as e:
+        logger.debug("Extras database seed skipped: %s", e)
     logger.info("PayGuard AI service startup complete.")
     yield
     logger.info("Shutting down PayGuard AI...")
@@ -65,6 +70,7 @@ app.add_middleware(NormalizePathMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
+    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:.*|http://127\.0\.0\.1:.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -134,6 +140,21 @@ async def root():
 app.include_router(analyze.router)
 app.include_router(history.router)
 app.include_router(health.router)
+
+# Mount Extras Intelligence Layer routers for unified cloud deployment
+try:
+    from extras.app.api.messages import router as messages_router
+    from extras.app.api.community import router as community_router
+    from extras.app.api.voice import router as voice_router
+    from extras.app.api.health import router as ext_health_router
+
+    app.include_router(messages_router)
+    app.include_router(community_router)
+    app.include_router(voice_router)
+    app.include_router(ext_health_router)
+    logger.info("Mounted Extras Intelligence Layer routers on main backend gateway.")
+except Exception as e:
+    logger.warning("Extras routers not mounted on main app: %s", e)
 
 if __name__ == "__main__":
     import uvicorn

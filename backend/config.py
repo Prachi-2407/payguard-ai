@@ -183,6 +183,9 @@ class Settings(BaseModel):
     LLM_TIMEOUT_SECONDS: float = float(os.getenv("LLM_TIMEOUT_SECONDS", "2.0"))
 
     # Extras Service Integration
-    EXTRAS_API_URL: str = os.getenv("EXTRAS_API_URL", "http://localhost:8001")
+    EXTRAS_API_URL: str = os.getenv(
+        "EXTRAS_API_URL",
+        "https://payguard-ai-izry.onrender.com" if os.getenv("RENDER") else "http://localhost:8001"
+    )
 
 settings = Settings()

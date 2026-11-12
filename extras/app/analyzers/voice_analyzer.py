@@ -27,14 +27,22 @@ def get_voice_model():
     if _VOICE_MODEL is not None:
         return _VOICE_MODEL
 
-    path = settings.VOICE_MODEL_PATH
-    if os.path.exists(path):
-        try:
-            _VOICE_MODEL = joblib.load(path)
-            logger.info(f"Loaded voice model pipeline from {path}")
-            return _VOICE_MODEL
-        except Exception as e:
-            logger.error(f"Failed to load voice model from {path}: {e}")
+    from pathlib import Path
+    base_dir = Path(__file__).resolve().parent.parent.parent
+    possible_paths = [
+        settings.VOICE_MODEL_PATH,
+        str(base_dir / "ml" / "models" / "voice_model.joblib"),
+        str(base_dir.parent / settings.VOICE_MODEL_PATH),
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                _VOICE_MODEL = joblib.load(path)
+                logger.info(f"Loaded voice model pipeline from {path}")
+                return _VOICE_MODEL
+            except Exception as e:
+                logger.error(f"Failed to load voice model from {path}: {e}")
 
     # Auto-train if missing
     try:

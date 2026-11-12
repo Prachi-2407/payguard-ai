@@ -34,14 +34,22 @@ def get_message_model():
     if _MESSAGE_MODEL is not None:
         return _MESSAGE_MODEL
 
-    path = settings.MODEL_PATH
-    if os.path.exists(path):
-        try:
-            _MESSAGE_MODEL = joblib.load(path)
-            logger.info(f"Loaded message model pipeline from {path}")
-            return _MESSAGE_MODEL
-        except Exception as e:
-            logger.error(f"Failed to load message model from {path}: {e}")
+    from pathlib import Path
+    base_dir = Path(__file__).resolve().parent.parent.parent
+    possible_paths = [
+        settings.MODEL_PATH,
+        str(base_dir / "ml" / "models" / "message_model.joblib"),
+        str(base_dir.parent / settings.MODEL_PATH),
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                _MESSAGE_MODEL = joblib.load(path)
+                logger.info(f"Loaded message model pipeline from {path}")
+                return _MESSAGE_MODEL
+            except Exception as e:
+                logger.error(f"Failed to load message model from {path}: {e}")
 
     # Auto-train if missing
     try:
