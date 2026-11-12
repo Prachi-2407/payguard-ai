@@ -1,0 +1,52 @@
+[
+  {
+    "description": "Standard legitimate merchant UPI payment QR",
+    "qr_payload": "upi://pay?pa=shop@okaxis&pn=Ram Store&am=250.00&cu=INR",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Legitimate grocery store QR with open payment amount",
+    "qr_payload": "upi://pay?pa=grocerymart@okhdfcbank&pn=Grocery Mart&cu=INR",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Dangerous high pre-filled amount QR skimming attack",
+    "qr_payload": "upi://pay?pa=shop@okaxis&pn=Electronics Depot&am=75000&cu=INR",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Payee name claims official brand but points to random personal VPA",
+    "qr_payload": "upi://pay?pa=attacker982@ybl&pn=Paytm Customer Care&cu=INR",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "UPI collect trick deceiving user into entering PIN to receive money",
+    "qr_payload": "upi://pay?pa=refund-desk@okicici&pn=Cashback Reward&am=2000&cu=INR&tn=enter pin to receive cashback",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "VPA username impersonating bank support team",
+    "qr_payload": "upi://pay?pa=sbi-kyc-support@paytm&pn=SBI Verification&cu=INR",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "QR containing embedded web phishing link",
+    "qr_payload": "https://paytm-secure-login.xyz/verify?id=992",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "UPI payment with embedded phishing link in transaction note",
+    "qr_payload": "upi://pay?pa=merchant@okaxis&pn=Merchant&am=100&cu=INR&tn=Visit http://phonepe-kyc-update.top/claim-refund",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Malformed UPI QR with unauthorized foreign currency",
+    "qr_payload": "upi://pay?pa=store@okaxis&pn=Global Store&am=100&cu=USD",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Benign non-payment informational text QR code",
+    "qr_payload": "Welcome to Ram General Store! Thank you for shopping with us.",
+    "expected_risk_level": "LOW"
+  }
+]

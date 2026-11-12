@@ -1,0 +1,62 @@
+[
+  {
+    "description": "Normal afternoon grocery payment to known merchant",
+    "request": {
+      "user_id": "u101",
+      "amount": 450,
+      "receiver": "grocery@okaxis",
+      "timestamp": "2026-11-12T14:30:00",
+      "channel": "upi",
+      "note": "weekly vegetables"
+    },
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Normal evening dining split to known friend",
+    "request": {
+      "user_id": "u101",
+      "amount": 820,
+      "receiver": "friend_rahul@ybl",
+      "timestamp": "2026-11-12T20:15:00",
+      "channel": "upi",
+      "note": "dinner share"
+    },
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Late-night extreme amount transfer to unknown payee with urgent refund pressure note",
+    "request": {
+      "user_id": "u101",
+      "amount": 49999,
+      "receiver": "unknown@ybl",
+      "timestamp": "2026-11-12T02:14:00",
+      "channel": "upi",
+      "note": "urgent refund"
+    },
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Near daily-limit payment to unknown payee with KYC account block scare",
+    "request": {
+      "user_id": "u101",
+      "amount": 95000,
+      "receiver": "scam_desk@axl",
+      "timestamp": "2026-11-12T03:45:00",
+      "channel": "upi",
+      "note": "account blocked kyc penalty"
+    },
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Daytime transfer to a new merchant with elevated amount deviation",
+    "request": {
+      "user_id": "u101",
+      "amount": 3200,
+      "receiver": "new_electronics_hub@okaxis",
+      "timestamp": "2026-11-12T16:20:00",
+      "channel": "upi",
+      "note": "headphones purchase"
+    },
+    "expected_risk_level": "MEDIUM"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "description": "Official Paytm mobile recharge portal",
+    "url": "https://paytm.com/recharge",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official PhonePe homepage",
+    "url": "https://phonepe.com/en/",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official State Bank of India personal banking portal",
+    "url": "https://www.sbi.co.in/web/personal-banking",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official HDFC NetBanking login portal",
+    "url": "https://netbanking.hdfcbank.com/netbanking/",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official ICICI Bank personal banking page",
+    "url": "https://www.icicibank.com/personal-banking",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official BHIM UPI educational documentation",
+    "url": "https://www.bhimupi.org.in/how-to-use-bhim",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official NPCI UPI product overview page",
+    "url": "https://www.npci.org.in/what-we-do/upi/product-overview",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official Amazon India checkout and payment selection",
+    "url": "https://www.amazon.in/gp/buy/payselect/handlers/display.html",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Official Flipkart account orders tracking page",
+    "url": "https://www.flipkart.com/account/orders",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Legitimate enterprise developer documentation with hyphens",
+    "url": "https://developer-support.microsoft.com/en-us/help",
+    "expected_risk_level": "LOW"
+  },
+  {
+    "description": "Fake Paytm login page on .xyz phishing domain",
+    "url": "http://paytm-secure-login.xyz/verify?id=123",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Fake PhonePe KYC update portal on .top domain",
+    "url": "http://phonepe-kyc-update.top/claim-refund",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Raw IP address hosting fake SBI NetBanking login",
+    "url": "http://192.168.1.105/sbi/netbanking/login.php",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Fake Google Pay scratch card reward scam on .online TLD",
+    "url": "https://googlepay-reward-claim.online/scratch-card?user=99281",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Deceptive URL with '@' sign pointing to external scam host",
+    "url": "http://amazon.in@pay-secure-bonus.xyz/redeem",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Subdomain spoofing pretending to be official Paytm domain",
+    "url": "https://paytm.com.secure-banking.xyz/auth/login",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Fake BHIM UPI cashback claim site on .click TLD",
+    "url": "http://bhim-upi-cashback-winner.click/claim",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Fake Axis Bank account unblock emergency phishing link",
+    "url": "http://axis-bank-unblock-account.work/otp-verify",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Shortened URL redirecting to external malicious KYC site",
+    "url": "https://bit.ly/3xPaytmKYC?redirect=http://paytm-kyc.xyz",
+    "expected_risk_level": "HIGH"
+  },
+  {
+    "description": "Fake HDFC instant refund portal on .rest TLD",
+    "url": "http://hdfc-instant-refund-desk.rest/claim?txn=88231",
+    "expected_risk_level": "HIGH"
+  }
+]

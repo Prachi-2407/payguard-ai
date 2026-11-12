@@ -1,0 +1,75 @@
+{
+  "u101": {
+    "user_id": "u101",
+    "avg_amount": 850.0,
+    "std_amount": 450.0,
+    "usual_hours": [
+      9,
+      22
+    ],
+    "daily_limit": 100000.0,
+    "known_receivers": [
+      "zomato@icici",
+      "grocery@okaxis",
+      "electric_bill@sbi",
+      "friend_rahul@ybl",
+      "metro_recharge@sbi",
+      "flipkart@axisbank",
+      "landlord_mehta@hdfcbank",
+      "chai_point@paytm",
+      "swiggy@okhdfcbank"
+    ]
+  },
+  "u102": {
+    "user_id": "u102",
+    "avg_amount": 2400.0,
+    "std_amount": 1200.0,
+    "usual_hours": [
+      8,
+      23
+    ],
+    "daily_limit": 100000.0,
+    "known_receivers": [
+      "grocery@okaxis",
+      "metro_recharge@sbi",
+      "zomato@icici",
+      "friend_rahul@ybl",
+      "chai_point@paytm",
+      "electric_bill@sbi",
+      "amazon_pay@apl"
+    ]
+  },
+  "u103": {
+    "user_id": "u103",
+    "avg_amount": 350.0,
+    "std_amount": 180.0,
+    "usual_hours": [
+      10,
+      21
+    ],
+    "daily_limit": 50000.0,
+    "known_receivers": [
+      "chai_point@paytm",
+      "friend_rahul@ybl",
+      "metro_recharge@sbi",
+      "flipkart@axisbank"
+    ]
+  },
+  "u_default": {
+    "user_id": "u_default",
+    "avg_amount": 1200.0,
+    "std_amount": 800.0,
+    "usual_hours": [
+      8,
+      22
+    ],
+    "daily_limit": 100000.0,
+    "known_receivers": [
+      "deli_mart@okicici",
+      "landlord_mehta@hdfcbank",
+      "electric_bill@sbi",
+      "grocery@okaxis",
+      "flipkart@axisbank"
+    ]
+  }
+}
