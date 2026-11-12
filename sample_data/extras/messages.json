@@ -1,0 +1,203 @@
+[
+  {
+    "id": "scam_msg_01",
+    "message": "Dear user your SBI KYC expires today. Update at http://sbi-kyc-update.top/login or account will be blocked",
+    "source": "sms",
+    "expected_category": "KYC_FRAUD",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_02",
+    "message": "Priya PNB grahak, aapka NetBanking KYC expire ho gaya hai. 24 ghante me http://pnb-netbanking-login.site/update par update karein warna khata freeze ho jayega.",
+    "source": "sms",
+    "expected_category": "KYC_FRAUD",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_03",
+    "message": "Congratulations! Your mobile number won 25,00,000 INR in KBC Season Lucky Draw! Call WhatsApp Manager at +919876543210 to claim prize.",
+    "source": "whatsapp",
+    "expected_category": "LOTTERY",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_04",
+    "message": "Badhai ho! Aapne Tata Safari contest me car jeeti hai. Delivery fee Rs 2,500 UPI ID prize.winner@okaxis par transfer karke dispatch confirm karein.",
+    "source": "whatsapp",
+    "expected_category": "LOTTERY",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_05",
+    "message": "Dear customer, your electricity bill excess refund of Rs 1,450 is approved. Click http://wb-bill-refund.site/credit to receive money in your account.",
+    "source": "sms",
+    "expected_category": "REFUND_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_06",
+    "message": "Amazon return refund of Rs 3,999 pending. Accept collect request from refund.dept@paytm on PhonePe to receive refund directly.",
+    "source": "sms",
+    "expected_category": "REFUND_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_07",
+    "message": "Part-time work from home opportunity! Earn 3,000 to 8,000 daily by liking YouTube videos and rating hotels. Contact HR on WhatsApp +918765432109.",
+    "source": "whatsapp",
+    "expected_category": "JOB_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_08",
+    "message": "Ghar baithe mobile se kamayein 5,000 rozana YouTube videos like karke. No investment needed. Turant WhatsApp karein +919988776655 par.",
+    "source": "whatsapp",
+    "expected_category": "JOB_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_09",
+    "message": "PhonePe Support: Facing UPI transaction failure or wrong transfer? Call 24x7 customer care helpline executive at +918765432109 for instant reversal.",
+    "source": "sms",
+    "expected_category": "FAKE_CUSTOMER_CARE",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_10",
+    "message": "Google Pay sahayata kendra: Failed payment refund lene ke liye hamare verified helpline number +917890123456 par turant call karein.",
+    "source": "sms",
+    "expected_category": "FAKE_CUSTOMER_CARE",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_11",
+    "message": "Payment alert: You received a payment request of Rs 4,999 from cashback.offer@ibl. Approve request and enter your secret UPI PIN to receive cashback.",
+    "source": "sms",
+    "expected_category": "COLLECT_REQUEST",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_12",
+    "message": "PhonePe collect request: Rs 2,500 receive karne ke liye request approve karein aur apna 6-digit secret UPI PIN enter karein.",
+    "source": "whatsapp",
+    "expected_category": "COLLECT_REQUEST",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_13",
+    "message": "Instant pre-approved loan of Rs 5,00,000 sanctioned at 1.5% interest. Zero CIBIL check. Download APK now at http://instant-cash-loan.xyz/apply",
+    "source": "sms",
+    "expected_category": "LOAN_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "scam_msg_14",
+    "message": "Aadhaar card par instant 2 lakh ka loan paayein bina document ke. File charge 999 transfer karein UPI ID fraud@ybl par.",
+    "source": "sms",
+    "expected_category": "LOAN_SCAM",
+    "expected_risk_level": "HIGH",
+    "language": "hi"
+  },
+  {
+    "id": "scam_msg_15",
+    "message": "India Post: Your parcel package #94812 is on hold due to incomplete address. Update address at http://indiapost-parcel.top/delivery within 12 hours.",
+    "source": "sms",
+    "expected_category": "OTHER",
+    "expected_risk_level": "HIGH",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_01",
+    "message": "482910 is your OTP for transaction of INR 1,500.00 at Swiggy using HDFC Bank Card ending 1234. OTP is valid for 10 mins. Do not share with anyone.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_02",
+    "message": "Dear SBI Customer, your NetBanking login OTP is 918234. Bank NEVER calls asking for OTP or passwords. Do not disclose to anyone.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_03",
+    "message": "Dear Customer, INR 450.00 debited from A/C XX4920 on 12-Nov-26 by UPI/groceries@okaxis/Ref 43192048123. If not done by you, SMS BLOCK to 567676.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_04",
+    "message": "A/C XX8912 credited with INR 12,500.00 on 12-Nov-2026 by salary transfer from TechCorp Ltd. Available balance INR 45,210.00. - ICICI Bank",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_05",
+    "message": "Received INR 850.00 from Priya Sharma (priya@ybl) into your State Bank of India account on 12-Nov-2026. UPI Ref 491028471920.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_06",
+    "message": "Your Amazon package with tracking ID 4819203 is out for delivery today. Delivery agent: Ramesh (+919876501234). Share delivery code 5812 only at doorstep.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_07",
+    "message": "Your Zomato food delivery partner is arriving in 8 minutes at your delivery location. Enjoy your meal!",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_08",
+    "message": "Dear Airtel customer, your unlimited pack of Rs 299 expires on 15-Nov-2026. Recharge on Airtel Thanks app or airtel.in to continue uninterrupted services.",
+    "source": "sms",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_09",
+    "message": "Hey Rahul, are you coming to college tomorrow? Let me know by evening so we can submit the project files together.",
+    "source": "whatsapp",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "en"
+  },
+  {
+    "id": "safe_msg_10",
+    "message": "Mummy ne bola hai aate waqt market se dahi aur doodh le aana. Jaldi aana ghar.",
+    "source": "whatsapp",
+    "expected_category": "NONE",
+    "expected_risk_level": "LOW",
+    "language": "hi"
+  }
+]
+

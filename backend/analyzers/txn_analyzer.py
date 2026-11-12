@@ -216,6 +216,37 @@ class TransactionAnalyzer:
                 )
             )
 
+        # 8. Community Reputation Check on Receiver
+        if receiver:
+            try:
+                import httpx
+                resp = httpx.get(
+                    f"{settings.EXTRAS_API_URL}/api/ext/reputation",
+                    params={"value": receiver},
+                    timeout=2.0
+                )
+                if resp.status_code == 200:
+                    rep_data = resp.json()
+                    rep_count = rep_data.get("report_count", 0)
+                    if rep_count >= 3:
+                        signals.append(
+                            Signal(
+                                name="Reported by community",
+                                severity="high",
+                                detail=f"This UPI payee has {rep_count} verified community fraud reports in the threat database.",
+                            )
+                        )
+                    elif rep_count > 0:
+                        signals.append(
+                            Signal(
+                                name="Community Fraud Reports",
+                                severity="medium",
+                                detail=f"This UPI payee has {rep_count} community report(s) on file.",
+                            )
+                        )
+            except Exception:
+                pass
+
         # IsolationForest Anomaly Score
         ml_prob = 0.0
         model_artifact = get_txn_model()

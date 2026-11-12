@@ -14,12 +14,40 @@ services:
       - DEBUG=false
       - USE_LLM_EXPLAINER=false
       - DATABASE_URL=sqlite:///./payguard.db
+      - EXTRAS_API_URL=http://extras:8001
     volumes:
       - ./backend/ml:/app/backend/ml
       - ./sample_data:/app/sample_data
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  extras:
+    build:
+      context: ./extras
+      dockerfile: Dockerfile
+    container_name: payguard-extras
+    ports:
+      - "8001:8001"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8001
+      - MAIN_API_URL=http://backend:8000
+      - CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000
+      - EXTRAS_DB_URL=sqlite:///./extras.db
+      - LOG_LEVEL=info
+    volumes:
+      - ./extras/ml/models:/app/extras/ml/models
+      - ./sample_data/extras:/app/sample_data/extras
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/api/ext/health')"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -34,8 +62,11 @@ services:
     environment:
       - VITE_USE_MOCK=false
       - VITE_API_BASE_URL=http://localhost:8000
+      - VITE_EXTRAS_API_URL=http://localhost:8001
     depends_on:
       backend:
+        condition: service_healthy
+      extras:
         condition: service_healthy
     restart: unless-stopped
 

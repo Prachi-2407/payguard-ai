@@ -310,3 +310,52 @@ export async function mockGetHealth() {
   return { status: "ok" };
 }
 
+export async function mockAnalyzeMessage({ message = "", source = "sms" }) {
+  await sleep(randomLatency());
+  const lower = message.toLowerCase();
+  const isScam = lower.includes("kyc") || lower.includes("block") || lower.includes("lottery") || lower.includes("pin") || lower.includes("otp");
+  const score = isScam ? 92 : 12;
+  const risk_level = isScam ? "HIGH" : "LOW";
+  const verdict = isScam ? "Do not proceed" : "Safe to proceed";
+  const scam_category = lower.includes("kyc") ? "KYC_FRAUD" : lower.includes("lottery") ? "LOTTERY" : isScam ? "OTHER" : "NONE";
+
+  return {
+    risk_score: score,
+    risk_level,
+    verdict,
+    signals: isScam ? [
+      { name: "Account Suspension / Coercive Threat", severity: "high", detail: "Uses urgency and threats of account closure." },
+      { name: "High-Pressure Urgency Language", severity: "medium", detail: "Prompts immediate action within 24 hours." }
+    ] : [],
+    explanation: isScam
+      ? "CRITICAL RISK: Message exhibits hallmarks of social engineering and credential theft."
+      : "No phishing or deceptive payment indicators detected in this message.",
+    recommended_action: isScam ? "Do not click links or call numbers provided." : "Safe to proceed.",
+    analyzed_at: new Date().toISOString(),
+    type: "message",
+    extracted: {
+      urls: lower.includes("http") ? [message.match(/https?:\/\/[^\s]+/)?.[0] || "http://sbi-kyc-update.top/login"] : [],
+      upi_ids: lower.includes("@") ? [message.match(/\b[\w.-]+@[\w.-]+\b/)?.[0] || "fraud@ybl"] : [],
+      phone_numbers: ["+919876543210"],
+      scam_category
+    }
+  };
+}
+
+export async function mockSubmitReport({ target_type, value, reason }) {
+  await sleep(200);
+  return { status: "recorded", report_count: 3 };
+}
+
+export async function mockGetReputation(value) {
+  await sleep(150);
+  const lower = (value || "").toLowerCase();
+  const isBad = lower.includes("fraud") || lower.includes("scam") || lower.includes("bad");
+  return {
+    value,
+    report_count: isBad ? 5 : 0,
+    reputation: isBad ? "BAD" : "UNKNOWN",
+    last_reported: isBad ? new Date().toISOString() : null
+  };
+}
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PayGuard AI Extension Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="logo">🛡️</div>
+      <div>
+        <h2>PayGuard AI Configuration</h2>
+        <p class="subtitle">Configure backend gateway and intelligence layer endpoints</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="main-api">Main Backend API Base URL</label>
+      <input type="url" id="main-api" placeholder="http://localhost:8000" />
+      <span class="help-text">Gateway for URL phishing and payment analysis (Person A).</span>
+    </div>
+
+    <div class="form-group">
+      <label for="extras-api">Extras Intelligence API Base URL</label>
+      <input type="url" id="extras-api" placeholder="http://localhost:8001" />
+      <span class="help-text">Service for message analysis, voice scam detection, and community reports (Person C).</span>
+    </div>
+
+    <div class="actions">
+      <button id="save-btn" class="btn primary">Save Settings</button>
+      <button id="reset-btn" class="btn secondary">Reset Defaults</button>
+      <span id="status-msg" class="status-msg"></span>
+    </div>
+
+    <div class="privacy-note">
+      <h4>🔒 Privacy & Data Practices</h4>
+      <p>
+        PayGuard AI inspects visible URLs and explicitly submitted text only.
+        Private chat logs, personal messages, and sensitive contact lists are NEVER collected,
+        tracked, or sent to third-party ad networks.
+      </p>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
+

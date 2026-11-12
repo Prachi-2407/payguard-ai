@@ -13,12 +13,14 @@ import {
   Sparkles,
   Zap,
   Lock,
-  ArrowRight
+  ArrowRight,
+  MessageSquare
 } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { CheckLinkTab } from './components/CheckLinkTab';
 import { ScanQrTab } from './components/ScanQrTab';
 import { CheckTxnTab } from './components/CheckTxnTab';
+import { CheckMessageTab } from './components/CheckMessageTab';
 import { HistoryTab } from './components/HistoryTab';
 import { ScamTipsTab } from './components/ScamTipsTab';
 import { DemoQrGallery } from './components/DemoQrGallery';
@@ -31,7 +33,7 @@ import { getHistory } from './api/client';
 
 export default function App() {
   const { t } = useLanguage();
-  const [activeTab, setActiveTab] = useState('link'); // 'link' | 'qr' | 'txn' | 'history' | 'tips'
+  const [activeTab, setActiveTab] = useState('link'); // 'link' | 'qr' | 'txn' | 'message' | 'history' | 'tips'
   const [warningModalResult, setWarningModalResult] = useState(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [checksCount, setChecksCount] = useState(148);
@@ -188,6 +190,19 @@ export default function App() {
             </button>
 
             <button
+              onClick={() => setActiveTab('message')}
+              data-testid="tab-message"
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 ${
+                activeTab === 'message'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+              }`}
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>{t('tabMessage')}</span>
+            </button>
+
+            <button
               onClick={() => setActiveTab('history')}
               data-testid="tab-history"
               className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center space-x-2 ${
@@ -226,6 +241,7 @@ export default function App() {
               </div>
             )}
             {activeTab === 'txn' && <CheckTxnTab onHighRiskDetected={handleHighRisk} />}
+            {activeTab === 'message' && <CheckMessageTab onHighRiskDetected={handleHighRisk} />}
             {activeTab === 'history' && <HistoryTab />}
             {activeTab === 'tips' && <ScamTipsTab />}
           </div>

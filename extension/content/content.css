@@ -1,0 +1,63 @@
+/* PayGuard AI - Content Script Inline Badges */
+
+.payguard-link-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  margin-left: 5px !important;
+  margin-right: 3px !important;
+  padding: 1px 6px !important;
+  border-radius: 10px !important;
+  font-size: 10px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.15s ease, opacity 0.15s ease !important;
+}
+
+.payguard-link-badge:hover {
+  transform: scale(1.08) !important;
+  opacity: 0.95 !important;
+}
+
+.payguard-low {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #10b981 !important;
+}
+
+.payguard-medium {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #f59e0b !important;
+}
+
+.payguard-high {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #ef4444 !important;
+  animation: payguard-pulse 2s infinite !important;
+}
+
+@keyframes payguard-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  }
+}
+
+.payguard-icon {
+  font-size: 10px !important;
+}
+
+.payguard-text {
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+

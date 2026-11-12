@@ -1,5 +1,5 @@
 // src/components/ResultCard.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, 
   AlertTriangle, 
@@ -9,13 +9,22 @@ import {
   Share2, 
   Clock, 
   HelpCircle,
-  ArrowRight
+  ArrowRight,
+  Flag,
+  Globe,
+  Phone,
+  AtSign,
+  Tag
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { getReputation } from '../api/client';
+import { ReportModal } from './ReportModal';
 
 export function ResultCard({ result }) {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
+  const [showReport, setShowReport] = useState(false);
+  const [reputationData, setReputationData] = useState(null);
 
   if (!result) return null;
 
@@ -28,7 +37,28 @@ export function ResultCard({ result }) {
     recommended_action = '',
     analyzed_at = '',
     type = 'url',
+    extracted = null,
   } = result;
+
+  // Identify any target VPA or link for reputation and reporting
+  const targetVpa = extracted?.upi_ids?.[0] || result?.receiver || result?.payee_vpa || null;
+  const targetUrl = extracted?.urls?.[0] || (type === 'url' ? result?.url : null);
+  const reportTargetValue = targetVpa || targetUrl || extracted?.phone_numbers?.[0] || '';
+
+  // Query community reputation if a VPA is present
+  useEffect(() => {
+    if (targetVpa) {
+      getReputation(targetVpa)
+        .then((data) => {
+          if (data && data.reputation) {
+            setReputationData(data);
+          }
+        })
+        .catch(() => {});
+    } else {
+      setReputationData(null);
+    }
+  }, [targetVpa]);
 
   // Determine colors based on contract risk_level
   const isHigh = risk_level === 'HIGH';
@@ -169,6 +199,60 @@ export function ResultCard({ result }) {
         </div>
       </div>
 
+      {/* Community Reputation Banner */}
+      {reputationData && reputationData.reputation !== 'UNKNOWN' && (
+        <div className={`mt-4 p-3 rounded-xl border flex items-center justify-between text-xs font-semibold ${
+          reputationData.reputation === 'BAD'
+            ? 'bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-400'
+            : 'bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400'
+        }`}>
+          <div className="flex items-center space-x-2">
+            <ShieldAlert className="w-4 h-4 shrink-0" />
+            <span>
+              Community Reputation: <strong>{reputationData.reputation}</strong> ({reputationData.report_count} verified fraud reports)
+            </span>
+          </div>
+          <span className="text-[10px] uppercase tracking-wider opacity-75 font-mono">
+            {reputationData.value}
+          </span>
+        </div>
+      )}
+
+      {/* Extracted Intelligence Chips (For Messages / Extras) */}
+      {extracted && (
+        <div className="mt-4 p-4 rounded-xl bg-slate-100/60 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800 space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Extracted Intelligence
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {extracted.scam_category && extracted.scam_category !== 'NONE' && (
+              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
+                <Tag className="w-3 h-3" />
+                <span>{extracted.scam_category}</span>
+              </span>
+            )}
+            {extracted.urls?.map((u, i) => (
+              <span key={i} className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                <Globe className="w-3 h-3" />
+                <span className="truncate max-w-[200px]">{u}</span>
+              </span>
+            ))}
+            {extracted.upi_ids?.map((v, i) => (
+              <span key={i} className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                <AtSign className="w-3 h-3" />
+                <span>{v}</span>
+              </span>
+            ))}
+            {extracted.phone_numbers?.map((p, i) => (
+              <span key={i} className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-mono bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                <Phone className="w-3 h-3" />
+                <span>{p}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Recommended Action Callout */}
       <div className="mt-6 rounded-xl bg-white dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex items-start space-x-3">
         <ArrowRight className="w-5 h-5 mt-0.5 text-blue-600 dark:text-blue-400 shrink-0" />
@@ -222,23 +306,39 @@ export function ResultCard({ result }) {
         </div>
       )}
 
-      {/* Action Bar: Copy / Share */}
-      <div className="mt-6 pt-5 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-end space-x-3">
+      {/* Action Bar: Report Threat / Copy / Share */}
+      <div className="mt-6 pt-5 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
         <button
-          onClick={handleCopy}
-          className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-colors shadow-xs"
+          onClick={() => setShowReport(true)}
+          className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/80 transition-colors shadow-xs"
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-          <span>{copied ? t('copied') : t('copyResult')}</span>
+          <Flag className="w-3.5 h-3.5 text-rose-500" />
+          <span>Report Threat</span>
         </button>
-        <button
-          onClick={handleShare}
-          className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm"
-        >
-          <Share2 className="w-3.5 h-3.5" />
-          <span>{t('shareResult')}</span>
-        </button>
+
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={handleCopy}
+            className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-colors shadow-xs"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? t('copied') : t('copyResult')}</span>
+          </button>
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+            <span>{t('shareResult')}</span>
+          </button>
+        </div>
       </div>
+
+      <ReportModal
+        isOpen={showReport}
+        onClose={() => setShowReport(false)}
+        initialValue={reportTargetValue}
+      />
     </div>
   );
 }

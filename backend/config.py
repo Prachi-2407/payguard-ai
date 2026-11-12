@@ -182,4 +182,7 @@ class Settings(BaseModel):
     LLM_MODEL: str = os.getenv("LLM_MODEL", "gpt-3.5-turbo")
     LLM_TIMEOUT_SECONDS: float = float(os.getenv("LLM_TIMEOUT_SECONDS", "2.0"))
 
+    # Extras Service Integration
+    EXTRAS_API_URL: str = os.getenv("EXTRAS_API_URL", "http://localhost:8001")
+
 settings = Settings()
