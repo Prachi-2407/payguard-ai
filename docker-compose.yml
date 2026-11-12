@@ -3,8 +3,8 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: payguard-backend
     ports:
       - "8000:8000"
@@ -27,8 +27,8 @@ services:
 
   extras:
     build:
-      context: ./extras
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: extras/Dockerfile
     container_name: payguard-extras
     ports:
       - "8001:8001"
