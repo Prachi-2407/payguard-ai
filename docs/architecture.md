@@ -119,3 +119,4 @@ flowchart TD
 - **Query Parameter Masking**: Personal identifiers, tokens, and phone numbers in URL queries are masked prior to storage and logging.
 - **Zero External Runtime Dependency**: Core ML and rules run locally in-memory without requiring internet connectivity.
 - **Safety-Gated UX**: Full-screen modal blocks navigation on `HIGH` risk until the user explicitly checks the risk acknowledgement.
+
