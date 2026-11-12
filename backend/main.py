@@ -38,6 +38,18 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     yield
     logger.info("Shutting down PayGuard AI...")
 
+class NormalizePathMiddleware:
+    """Normalizes duplicate slashes (e.g. '//api/health' -> '/api/health') to prevent 404s."""
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            path = scope.get("path", "")
+            if "//" in path:
+                scope["path"] = re.sub(r"/+", "/", path)
+        await self.app(scope, receive, send)
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
@@ -46,6 +58,8 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.add_middleware(NormalizePathMiddleware)
 
 # CORS Middleware
 app.add_middleware(
