@@ -2,8 +2,13 @@
 import { USE_MOCK, API_BASE_URL } from '../config';
 import * as mockApi from './mockApi';
 
+// Sanitize base URL: strip trailing slashes and redundant trailing '/api'
+const cleanBaseUrl = (API_BASE_URL || 'http://localhost:8000')
+  .replace(/\/+$/, '')
+  .replace(/\/api$/, '');
+
 async function fetchRealApi(endpoint, options = {}) {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${cleanBaseUrl}${endpoint}`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -26,7 +31,7 @@ async function fetchRealApi(endpoint, options = {}) {
     // Network / unreachable error
     const netErr = new Error("Unable to connect to PayGuard API server. Please ensure backend is running.");
     netErr.status = 503;
-    netErr.data = { error: "Backend server unreachable at " + API_BASE_URL, code: 503 };
+    netErr.data = { error: "Backend server unreachable at " + cleanBaseUrl, code: 503 };
     throw netErr;
   }
 }

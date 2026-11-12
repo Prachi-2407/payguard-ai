@@ -108,6 +108,15 @@ async def generic_exception_handler(request: Request, exc: Exception):
     )
 
 # Register routers
+@app.get("/", tags=["Root"])
+async def root():
+    return {
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "status": "online",
+        "docs": "/docs",
+    }
+
 app.include_router(analyze.router)
 app.include_router(history.router)
 app.include_router(health.router)
