@@ -11,6 +11,28 @@ const cleanExtrasUrl = (EXTRAS_API_URL || cleanBaseUrl)
   .replace(/\/+$/, '')
   .replace(/\/api$/, '');
 
+function fallbackExtras(endpoint, options = {}, url = '') {
+  try {
+    if (endpoint.includes('analyze/message')) {
+      const body = options.body ? JSON.parse(options.body) : {};
+      return mockApi.mockAnalyzeMessage(body);
+    }
+    if (endpoint.includes('reports')) {
+      const body = options.body ? JSON.parse(options.body) : {};
+      return mockApi.mockSubmitReport(body);
+    }
+    if (endpoint.includes('reputation')) {
+      let val = '';
+      try {
+        const u = new URL(url, 'http://localhost');
+        val = u.searchParams.get('value') || '';
+      } catch (e) {}
+      return mockApi.mockGetReputation(val);
+    }
+  } catch (e) {}
+  return null;
+}
+
 async function fetchExtrasApi(endpoint, options = {}) {
   const url = `${cleanExtrasUrl}${endpoint}`;
   try {
@@ -24,6 +46,11 @@ async function fetchExtrasApi(endpoint, options = {}) {
 
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
+      if (res.status === 404) {
+        console.warn(`[PayGuard] Extras endpoint ${endpoint} not ready on ${cleanExtrasUrl}; using client fallback.`);
+        const fallback = fallbackExtras(endpoint, options, url);
+        if (fallback) return fallback;
+      }
       const err = new Error(data.error || `Request failed with status ${res.status}`);
       err.status = res.status;
       err.data = data;
@@ -31,6 +58,9 @@ async function fetchExtrasApi(endpoint, options = {}) {
     }
     return data;
   } catch (error) {
+    const fallback = fallbackExtras(endpoint, options, url);
+    if (fallback) return fallback;
+
     if (error.status) throw error;
     const netErr = new Error("Unable to connect to PayGuard Extras service. Please ensure extras service is running on port 8001.");
     netErr.status = 503;
